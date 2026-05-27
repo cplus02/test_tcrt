@@ -1,0 +1,16 @@
+version: 1
+framework: mixed   # repo contains Python (pytest + playwright-async) and JS/TS (playwright)
+
+paths:
+  tests:     tests/
+  pages:     pages/
+  flows:     flows/
+  fixtures:  fixtures/
+
+scan:
+  include:
+    - "^test_.*\\.py$"
+    - ".*_test\\.py$"
+    - ".*\\.spec\\.(ts|js)$"
+    - ".*\\.test\\.(ts|js)$"
+  exclude: []   # rely on DEFAULT_EXCLUDE_PATTERNS (node_modules, .venv, pages/, etc.)

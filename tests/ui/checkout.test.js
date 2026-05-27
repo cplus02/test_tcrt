@@ -1,21 +1,27 @@
 /**
  * Checkout flow — Playwright JavaScript (.test.js → PLAYWRIGHT_JS).
+ *
+ * SHOP-001 intentionally overlaps with flow_purchase.py to show that the
+ * same manual TC can be covered by both a JS spec and a Python e2e flow.
  */
 const { test, expect } = require('@playwright/test');
 
 test.describe('Checkout', () => {
+  // tcrt: SHOP-001 [covers]
   test('adds an item to the cart', async ({ page }) => {
     await page.goto('/shop/widget');
     await page.getByRole('button', { name: /add to cart/i }).click();
     await expect(page.getByText(/1 item in cart/i)).toBeVisible();
   });
 
+  // tcrt: SHOP-003
   test('updates total when quantity changes', async ({ page }) => {
     await page.goto('/cart');
     await page.getByLabel('Quantity').fill('3');
     await expect(page.getByTestId('cart-total')).toContainText('$');
   });
 
+  // tcrt: SHOP-001, SHOP-002 [covers]
   test('completes purchase with valid payment', async ({ page }) => {
     await page.goto('/cart');
     await page.getByRole('button', { name: /checkout/i }).click();

@@ -7,9 +7,11 @@ test names from the AST.
 """
 from __future__ import annotations
 
+import pytest
 from playwright.async_api import Page, async_playwright
 
 
+@pytest.mark.tcrt("SHOP-001", link_type="primary")
 async def test_full_purchase_flow(page: Page) -> None:
     """Walk a guest user from search → cart → checkout → confirmation."""
     await page.goto("/")
@@ -22,6 +24,7 @@ async def test_full_purchase_flow(page: Page) -> None:
     await page.get_by_role("button", name="Checkout").click()
 
 
+@pytest.mark.tcrt("SHOP-002", link_type="covers")
 async def test_apply_discount_code(page: Page) -> None:
     """A valid discount code should reduce the cart total."""
     await page.goto("/cart")

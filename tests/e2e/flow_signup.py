@@ -1,9 +1,11 @@
 """End-to-end signup flow — Playwright Python async (PLAYWRIGHT_PY_ASYNC)."""
 from __future__ import annotations
 
+import pytest
 from playwright.async_api import Page
 
 
+@pytest.mark.tcrt("REG-001", link_type="primary")
 async def test_new_user_can_register(page: Page) -> None:
     """A first-time visitor should be able to create an account."""
     await page.goto("/signup")
@@ -13,6 +15,7 @@ async def test_new_user_can_register(page: Page) -> None:
     await page.get_by_role("button", name="Create account").click()
 
 
+@pytest.mark.tcrt("REG-002", link_type="covers")
 async def test_signup_validates_password_strength(page: Page) -> None:
     """Weak passwords should be rejected client-side."""
     await page.goto("/signup")
@@ -20,6 +23,7 @@ async def test_signup_validates_password_strength(page: Page) -> None:
     await page.get_by_label("Password").blur()
 
 
+@pytest.mark.tcrt("REG-003", link_type="covers")
 async def test_signup_blocks_duplicate_email(page: Page) -> None:
     """Re-using an existing email should show an inline error."""
     await page.goto("/signup")
