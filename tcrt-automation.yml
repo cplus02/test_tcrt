@@ -6,11 +6,23 @@ paths:
   pages:     pages/
   flows:     flows/
   fixtures:  fixtures/
+  resources: resources/
+  config:    config/
 
 scan:
+  # GLOB patterns (fnmatch). These drive BOTH stages of the scan:
+  #   * script sync  (populates the script list)
+  #   * smart-scan   (classifies scripts into suite proposals)
+  #
+  # `flow_*.py` is what lets the PLAYWRIGHT_PY_ASYNC e2e files
+  # (tests/e2e/flow_purchase.py, flow_signup.py) be discovered — arbitrary
+  # `.py` names are NOT matched by the default include patterns.
   include:
-    - "^test_.*\\.py$"
-    - ".*_test\\.py$"
-    - ".*\\.spec\\.(ts|js)$"
-    - ".*\\.test\\.(ts|js)$"
-  exclude: []   # rely on DEFAULT_EXCLUDE_PATTERNS (node_modules, .venv, pages/, etc.)
+    - "test_*.py"
+    - "*_test.py"
+    - "*.spec.ts"
+    - "*.test.ts"
+    - "*.spec.js"
+    - "*.test.js"
+    - "flow_*.py"
+  exclude: []   # rely on default excludes (pages/, flows/, fixtures/, conftest, …)
