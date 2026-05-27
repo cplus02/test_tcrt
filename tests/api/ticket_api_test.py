@@ -5,24 +5,24 @@ import pytest
 
 
 @pytest.mark.api
-@pytest.mark.tcrt("TICKET-001", link_type="primary")
+@pytest.mark.tcrt("TCG-100572-010-010", link_type="primary")
 def test_create_ticket(base_url, api_token):
     assert base_url and api_token
 
 
 @pytest.mark.api
-@pytest.mark.tcrt("TICKET-002", link_type="covers")
+@pytest.mark.tcrt("TCG-100579-010-010", link_type="covers")
 def test_assign_ticket_to_user(base_url, api_token):
     assert True
 
 
 @pytest.mark.api
-@pytest.mark.tcrt("TICKET-003", link_type="covers")
+@pytest.mark.tcrt("TCG-107478-010-010", link_type="covers")
 def test_close_ticket_updates_status(base_url, api_token):
     assert True
 
 
 @pytest.mark.api
-@pytest.mark.tcrt("TICKET-004", link_type="covers")
+@pytest.mark.tcrt("TCG-100491-010-010", link_type="covers")
 def test_ticket_list_pagination(base_url):
     assert base_url

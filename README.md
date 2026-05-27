@@ -92,13 +92,15 @@ tests/
 
 ### Cross-script TC Coverage（一個 TC 被多支腳本覆蓋）
 
-| TC ID | 涵蓋的腳本 |
+TC ID 對應真實 CRD test case。CRD 的 `test_case_number` 帶點號（如 `TCG-107489.050.010`），但 marker 的 tc_id 文法只允許 `[A-Za-z0-9_-]`，所以 marker 一律把點改成 dash 寫（`TCG-107489-050-010`）；TCRT marker 同步時會把 `test_case_number` 正規化成 dash 形式來比對。
+
+| TC ID（marker dash 形式 → 真實編號） | 涵蓋的腳本 |
 |---|---|
-| `AUTH-001` | `test_user_auth.py`（primary）、`login.spec.ts`（references + covers）|
-| `AUTH-002` | `test_user_auth.py`（covers）、`login.spec.ts`（covers）|
-| `AUTH-003` | `test_user_auth.py`（primary + referenced）、`login.spec.ts`（covers）|
-| `SHOP-001` | `flow_purchase.py`（primary）、`checkout.test.js`（covers × 2）|
-| `SHOP-002` | `flow_purchase.py`（covers）、`checkout.test.js`（covers）|
+| `TCG-107489-050-010`（= `TCG-107489.050.010`） | `test_user_auth.py`（primary）、`login.spec.ts`（references + covers）|
+| `TCG-107489-060-010`（= `TCG-107489.060.010`） | `test_user_auth.py`（covers）、`login.spec.ts`（covers）|
+| `TCG-107489-070-010`（= `TCG-107489.070.010`） | `test_user_auth.py`（primary + referenced）、`login.spec.ts`（covers）|
+| `TCG-107489-130-010`（= `TCG-107489.130.010`） | `flow_purchase.py`（primary）、`checkout.test.js`（covers × 2）|
+| `TCG-107489-140-010`（= `TCG-107489.140.010`） | `flow_purchase.py`（covers）、`checkout.test.js`（covers）|
 
 ## TCRT 格式規則速查
 
